@@ -22,11 +22,10 @@ public class Embalagem {
     }
     
     public Embalagem(String nomeEmbalagem, int quantidade_pacote,
-            float preco_pacote, float preco_unidade) {
+            float preco_pacote) {
         this.nomeEmbalagem = nomeEmbalagem;
         this.quantidade_pacote = quantidade_pacote;
         this.preco_pacote = preco_pacote;
-        this.preco_unidade = preco_unidade;
     }
 
     public String getNomeEmbalagem() {
@@ -58,13 +57,20 @@ public class Embalagem {
     public float getPreco_unidade() {
         return preco_unidade;
     }
-
+    
     public void setPreco_unidade(float preco_unidade) {
         this.preco_unidade = preco_unidade;
     }
     
+    
     public float calcPrecoUnidade(int quantidade, float preco_pacote) {
         float precoUnidade = preco_pacote/quantidade;
+        
+        return precoUnidade;
+    }
+    
+    public float calcPrecoUnidade() {
+        float precoUnidade = this.preco_pacote/this.quantidade_pacote;
         
         return precoUnidade;
     }

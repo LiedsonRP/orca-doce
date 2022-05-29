@@ -27,7 +27,7 @@ public class EmbalagemDAO {
         try {
             st = conn.prepareStatement(
                     "INSERT INTO embalagem "
-                            + "(nome_embalagem, quantidade_pacote, preco_pacote, preco_unidade)"
+                            + "(nome_embalagem, quantidade_pacote, preco_pacote,preco_unidade)"
                             + "VALUES "
                             + "(?,?,?,?)",
                             Statement.RETURN_GENERATED_KEYS);
@@ -38,6 +38,7 @@ public class EmbalagemDAO {
             st.setFloat(4, embalagem.getPreco_unidade());
             
             int rowsAffected = st.executeUpdate();
+            System.out.println("executado");
             
             if(rowsAffected > 0) {
                 ResultSet rs = st.getGeneratedKeys();

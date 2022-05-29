@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/18" fx:controller="controller.consultarItensController" >
+   <children>
+      <Button fx:id="btnCadastrarEmb" layoutX="57.0" layoutY="137.0" mnemonicParsing="false" onMouseClicked="#cadastrarEmbalagem" prefHeight="45.0" prefWidth="139.0" text="Cadastra Embalagem" />
+      <Button fx:id="btnCadastrarItemSimples" layoutX="208.0" layoutY="137.0" mnemonicParsing="false" onMouseClicked="#cadastrarItemSimples" prefHeight="45.0" prefWidth="139.0" text="Cadastra Item Simples" />
+      <Button fx:id="btnCadastrarItemCompost" layoutX="361.0" layoutY="137.0" mnemonicParsing="false" onMouseClicked="#cadastrarItemComposto" prefHeight="45.0" prefWidth="153.0" text="Cadastra Item Composto" />
+      <Button fx:id="btnCadastrarTerceirizacao" layoutX="57.0" layoutY="207.0" mnemonicParsing="false" onMouseClicked="#cadastrarTerceirizacao" prefHeight="45.0" prefWidth="139.0" text="Cadastra Terceirização" />
+   </children>
+</AnchorPane>
