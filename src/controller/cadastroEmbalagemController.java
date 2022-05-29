@@ -8,8 +8,10 @@ import javafx.scene.control.Label;
 
 import database.entities.Embalagem;
 import database.dao.EmbalagemDAO;
+import database.DbSearch;
 
 import resources.maskInputs;
+import resources.StageManagement;
 
 public class cadastroEmbalagemController {
 
@@ -18,6 +20,9 @@ public class cadastroEmbalagemController {
 
     @FXML
     private Button btnCancelarEmb;
+    
+    @FXML
+    private Button btnClosePopUp;
 
     @FXML
     private TextField inputNomeEmb;
@@ -36,11 +41,15 @@ public class cadastroEmbalagemController {
 
     @FXML
     private Label quantLabelMessage;
+    
+    @FXML
+    private Label DbLabelMessage;
 
 
     @FXML
     void cancelRegister(MouseEvent event) {
-    
+        StageManagement stage = new StageManagement();
+        stage.closeStage(this.btnCancelarEmb);
     }
     
 
@@ -50,7 +59,8 @@ public class cadastroEmbalagemController {
         EmbalagemDAO embDAO = new EmbalagemDAO();
         int ocurrences = 0;
         
-        boolean[] validateFields = {this.validadeNameField(), this.validatePriceField(), this.validadeQuantField()};
+        boolean[] validateFields = {this.validadeNameField(), 
+            this.validatePriceField(), this.validadeQuantField(), this.validadeValueNotDuplicate()};
        
         for (boolean isValid : validateFields){
             if (!isValid) {
@@ -62,16 +72,18 @@ public class cadastroEmbalagemController {
             String namePacking = this.inputNomeEmb.getText();
             float pricePacking = removeMoneyFormat();
             int quantPacking = Integer.parseInt(inputQuantEmb.getText());
-            float price_unit = emb.calcPrecoUnidade(quantPacking, pricePacking);
-            
-            System.out.println("valores validos");
+            float price_unit = emb.calcPrecoUnidade(quantPacking, pricePacking);                        
             
             emb.setNomeEmbalagem(namePacking);
             emb.setQuantidade_pacote(quantPacking);
             emb.setPreco_pacote(pricePacking);
             emb.setPreco_unidade(price_unit);
-
+            
+            System.out.println("funcionou");
             embDAO.insertInto(emb);
+            
+            StageManagement stage = new StageManagement();
+            stage.closeStage(this.btnCancelarEmb);
         }
     }
     
@@ -95,8 +107,8 @@ public class cadastroEmbalagemController {
     }
     
     private boolean validatePriceField() {                
-        String priceField = this.priceLabelMessage.getText();
-        boolean isValueValid = false;
+        String priceField = this.inputPrecoPac.getText();
+        boolean isValueValid = false;                
         
         if(priceField.isEmpty()) {
             this.priceLabelMessage.setText("O campo deve ser obrigatoriamente preenchido!");
@@ -158,5 +170,27 @@ public class cadastroEmbalagemController {
         }
         
         return isValueValid;
+    }
+    
+    private boolean validadeValueNotDuplicate() {
+        String tableName = "orcadocedb.embalagem";
+        String fieldName = "nome_embalagem";
+        
+        String value = this.inputNomeEmb.getText();
+        
+        DbSearch filter = new DbSearch();
+        boolean isValid = false;
+        
+        isValid = filter.valueExists(tableName, fieldName, value);
+        
+        if (!isValid) {
+            this.DbLabelMessage.setText("Uma mesma embalagem não pode ser cadastrada 2 vezes!");
+            this.DbLabelMessage.setVisible(true);
+        } else {
+            this.DbLabelMessage.setText("");
+            this.DbLabelMessage.setVisible(false);
+        }
+        
+        return isValid;
     }
 }

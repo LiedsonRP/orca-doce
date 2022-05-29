@@ -4,7 +4,6 @@
  */
 package resources;
 
-import java.io.IOException;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -30,6 +29,7 @@ public class StageManagement {
         this.stage.initOwner(owner.getScene().getWindow());
         
         this.stage.initStyle(StageStyle.UNDECORATED);
+        this.stage.centerOnScreen();                 
         
         this.stage.showAndWait();
         
@@ -46,7 +46,8 @@ public class StageManagement {
         return stage;
     }
     
-    public void closeStage() {
+    public void closeStage(Node component) {
+        this.stage = (Stage) component.getScene().getWindow();
         stage.close();
     }
     

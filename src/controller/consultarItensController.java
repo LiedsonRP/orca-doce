@@ -27,7 +27,7 @@ public class consultarItensController {
 
     @FXML
     void cadastrarEmbalagem(MouseEvent event) throws Exception  {   
-        this.actualForm = this.stage.createPopUpStage(scenesPath[0], this.btnCadastrarEmb);        
+        this.actualForm = this.stage.createPopUpStage(scenesPath[0], this.btnCadastrarEmb);                
     }
 
     @FXML

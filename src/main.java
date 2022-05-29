@@ -18,7 +18,7 @@ public class main extends Application {
     private String url = "/view/consultarItens.fxml";
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) throws Exception {        
         Parent root = FXMLLoader.load(getClass().getResource(url));
         
         Scene scene = new Scene(root);
