@@ -9,29 +9,25 @@ package database.entities;
  * @author lieds
  */
 public class UnidadeMedida {
-    final int NOME_UNIDADE_MAX_LENGTH = 45;
-    final int SIGLA_UNIDADE_MAX_LENGTH = 5;
     
+    private int id_unidade_medida;
     private String nome_unidade;
     private String sigla_unidade;
-    
-    public UnidadeMedida() {
-        
+
+    public int getId_unidade_medida() {
+        return id_unidade_medida;
     }
-    
-    public UnidadeMedida(String nome_unidade, String sigla_unidade) {
-        this.nome_unidade = nome_unidade;
-        this.sigla_unidade = sigla_unidade;
-    }   
+
+    public void setId_unidade_medida(int id_unidade_medida) {
+        this.id_unidade_medida = id_unidade_medida;
+    }
 
     public String getNome_unidade() {
         return nome_unidade;
     }
 
     public void setNome_unidade(String nome_unidade) {
-        if(nome_unidade.length() <= NOME_UNIDADE_MAX_LENGTH) {
-            this.nome_unidade = nome_unidade;
-        }
+        this.nome_unidade = nome_unidade;
     }
 
     public String getSigla_unidade() {
@@ -39,8 +35,6 @@ public class UnidadeMedida {
     }
 
     public void setSigla_unidade(String sigla_unidade) {
-        if(sigla_unidade.length() <= SIGLA_UNIDADE_MAX_LENGTH) {
-            this.sigla_unidade = sigla_unidade;
-        }
+        this.sigla_unidade = sigla_unidade;
     }
 }

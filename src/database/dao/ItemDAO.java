@@ -5,7 +5,8 @@
 package database.dao;
 
 import database.DB;
-import database.entities.Embalagem;
+import database.entities.Terceirizacao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,21 +21,22 @@ public class ItemDAO {
     Connection conn = null;
     PreparedStatement st = null;
     
-    public void insertInto(Embalagem embalagem) {
+    public void insertTerceirizacao(Terceirizacao terceirizacao) {
         conn = DB.getConnection();
         
         try {
             st = conn.prepareStatement(
                     "INSERT INTO item "
-                            + "(nome_embalagem, quantidade_pacote, preco_pacote, preco_unidade)"
+                            + "(tipo_item, nome_item, quantidade_item, preco_item, descricao)"
                             + "VALUES "
-                            + "(?,?,?,?)",
+                            + "(?,?,?,?,?)",
                             Statement.RETURN_GENERATED_KEYS);
             
-            st.setString(1, embalagem.getNomeEmbalagem());
-            st.setInt(2, embalagem.getQuantidade_pacote());
-            st.setFloat(3, embalagem.getPreco_pacote());
-            st.setFloat(4, embalagem.getPreco_unidade());
+            st.setString(1, terceirizacao.getTipo());
+            st.setString(2, terceirizacao.getNome_terceirizacao());
+            st.setFloat(3, terceirizacao.getQuantidade_remessa());
+            st.setFloat(4, terceirizacao.getPreco_terceirizacao());
+            st.setString(5, terceirizacao.getDescricao());
             
             int rowsAffected = st.executeUpdate();
             

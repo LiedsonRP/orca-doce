@@ -9,7 +9,7 @@ import resources.StageManagement;
 
 public class consultarItensController {
     
-    String[] scenesPath = {"../view/cadastro-embalagem.fxml"};
+    String[] scenesPath = {"../view/cadastro-embalagem.fxml", "../view/cadastro-terceirizacao.fxml"};
     StageManagement stage = new StageManagement();
     Stage actualForm;
 
@@ -27,7 +27,7 @@ public class consultarItensController {
 
     @FXML
     void cadastrarEmbalagem(MouseEvent event) throws Exception  {   
-        this.actualForm = this.stage.createPopUpStage(scenesPath[0], this.btnCadastrarEmb);                
+        this.stage.createPopUpStage(scenesPath[0], this.btnCadastrarEmb);                
     }
 
     @FXML
@@ -41,8 +41,8 @@ public class consultarItensController {
     }
 
     @FXML
-    void cadastrarTerceirizacao(MouseEvent event) {
-
+    void cadastrarTerceirizacao(MouseEvent event) throws Exception {
+        this.stage.createPopUpStage(scenesPath[1], this.btnCadastrarTerceirizacao);
     }
 
 }

@@ -7,40 +7,38 @@ package database.entities;
 /**
  *
  * @author lieds
- */
-public class Item {
-    final String[] LIST_TYPE_ITEM = {"Simples", "Composto", "Terceirização"};
+ */ 
+public abstract class Item {
+    protected final String TIPO_ITENS_LIST[] = {"Simples", "Composto", "Terceirização", "Embalagem"};
     
-    public String tipo;
-    public String nome_item;
-    public float quantidade_embalagem;
-    public float valor_embalagem;
-    public float peso_item;
-    public float custo_kg;
-    public String descricao;
-    public int id_embalagem;
-    
+    private int id_item;
+    private String tipo_item;
+    private String nome_item;
+    private UnidadeMedida unidadeMedida;
+
     public Item() {
-        
-    }
+    }        
 
-    public Item(String nome_item, float quantidade_embalagem, float valor_embalagem, 
-            float peso_item, float custo_kg, String descricao, int id_embalagem) {
+    public Item(int id_item, String nome_item, UnidadeMedida unidadeMedida) {
+        this.id_item = id_item;        
         this.nome_item = nome_item;
-        this.quantidade_embalagem = quantidade_embalagem;
-        this.valor_embalagem = valor_embalagem;
-        this.peso_item = peso_item;
-        this.custo_kg = custo_kg;
-        this.descricao = descricao;
-        this.id_embalagem = id_embalagem;
+        this.unidadeMedida = unidadeMedida;
     }
 
-    public String getTipo() {
-        return tipo;
+    public int getId_item() {
+        return id_item;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setId_item(int id_item) {
+        this.id_item = id_item;
+    }
+
+    public String getTipo_item() {
+        return tipo_item;
+    }
+
+    public void setTipo_item(String tipo_item) {
+        this.tipo_item = tipo_item;
     }
 
     public String getNome_item() {
@@ -51,52 +49,11 @@ public class Item {
         this.nome_item = nome_item;
     }
 
-    public float getQuantidade_embalagem() {
-        return quantidade_embalagem;
+    public UnidadeMedida getUnidadeMedida() {
+        return unidadeMedida;
     }
 
-    public void setQuantidade_embalagem(float quantidade_embalagem) {
-        this.quantidade_embalagem = quantidade_embalagem;
+    public void setUnidadeMedida(UnidadeMedida unidadeMedida) {
+        this.unidadeMedida = unidadeMedida;
     }
-
-    public float getValor_embalagem() {
-        return valor_embalagem;
-    }
-
-    public void setValor_embalagem(float valor_embalagem) {
-        this.valor_embalagem = valor_embalagem;
-    }
-
-    public float getPeso_item() {
-        return peso_item;
-    }
-
-    public void setPeso_item(float peso_item) {
-        this.peso_item = peso_item;
-    }
-
-    public float getCusto_kg() {
-        return custo_kg;
-    }
-
-    public void setCusto_kg(float custo_kg) {
-        this.custo_kg = custo_kg;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public int getId_embalagem() {
-        return id_embalagem;
-    }
-
-    public void setId_embalagem(int id_embalagem) {
-        this.id_embalagem = id_embalagem;
-    }    
-    
 }
